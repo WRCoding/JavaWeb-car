@@ -91,6 +91,9 @@
             <input type="submit" value="修改密码" class="btn"><br/>
         </form>
     </div>
+    <c:if test="${!empty user}">
+        <span>当前在线人数为: ${applicationScope.count}</span>
+    </c:if>
 </div>
 </body>
 </html>

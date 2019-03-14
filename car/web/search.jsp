@@ -86,12 +86,14 @@
     <c:choose>
         <c:when test="${user.userLevelId == 0}">
             <h1>购书系统 - 管理</h1>
+
             <div class="content-left">
                 <%@include file="common/manage-sidebar.jsp"%>
             </div>
         </c:when>
         <c:otherwise>
             <h1>购书系统 - 购书</h1>
+
             <div class="content-left">
                 <%@include file="common/user-sidebar.jsp"%>
             </div>
@@ -103,6 +105,9 @@
             <button type="submit" class="btn">搜索</button>
         </form>
     </div>
+    <c:if test="${!empty user}">
+        <span>当前在线人数为: ${applicationScope.count}</span>
+    </c:if>
 </div>
 </body>
 </html>

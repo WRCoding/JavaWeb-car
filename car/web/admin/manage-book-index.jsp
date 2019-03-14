@@ -95,6 +95,9 @@
             </tbody>
         </table>
     </div>
+    <c:if test="${!empty user}">
+        <span>当前在线人数为: ${applicationScope.count}</span>
+    </c:if>
 </div>
 </body>
 </html>

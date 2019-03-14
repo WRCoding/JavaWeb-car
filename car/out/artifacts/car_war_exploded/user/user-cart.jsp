@@ -55,6 +55,7 @@
 <body>
 <div class="content">
     <h1>购书系统 - 购书</h1>
+
     <div class="content-left">
         <%@include file="../common/user-sidebar.jsp"%>
     </div>
@@ -94,6 +95,9 @@
             </c:otherwise>
         </c:choose>
     </div>
+    <c:if test="${!empty user}">
+        <span>当前在线人数为: ${applicationScope.count}</span>
+    </c:if>
 </div>
 <script type="text/javascript">
     function ClearCar() {

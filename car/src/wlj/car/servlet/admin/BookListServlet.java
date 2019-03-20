@@ -22,7 +22,7 @@ public class BookListServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         BookDao bookDao = new BookDao();
         List<Book> list  = bookDao.bookList();
-        request.setAttribute("list",list );
+        request.setAttribute("booklist",list );
         request.getRequestDispatcher("/admin/manage-book-index.jsp").forward(request, response);
     }
 

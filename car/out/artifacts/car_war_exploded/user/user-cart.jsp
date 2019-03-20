@@ -1,5 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<base href="<%=basePath%>">
 <html>
 <head>
     <title>购书系统 - 购书</title>
@@ -62,7 +67,7 @@
     <div class="content-right">
         <c:choose>
             <c:when test="${empty carList}">
-                <h3 class="text-center">购书车空空如也 <a href="/" style="color: red">去购物</a></h3>
+                <h3 class="text-center">购书车空空如也 <a href="" style="color: red">去购物</a></h3>
             </c:when>
             <c:otherwise>
                 <table>
@@ -85,7 +90,7 @@
                             <td>${cart.book.bookAuthor}</td>
                             <td>${cart.number}</td>
                             <td>
-                                <a href="/user/deleteCar?bookId=${cart.book.bookId}">删除</a>
+                                <a href="deleteCar?bookId=${cart.book.bookId}">删除</a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -101,7 +106,7 @@
 </div>
 <script type="text/javascript">
     function ClearCar() {
-        window.location.href = "user/clearCar";
+        window.location.href = "clearCar";
     }
 </script>
 </body>

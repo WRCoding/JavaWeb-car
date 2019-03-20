@@ -25,7 +25,7 @@ public class DeleteCarServlet extends HttpServlet {
                 carList.remove(i);
             }
         }
-        response.sendRedirect("user/user-cart.jsp");
+        response.sendRedirect("user-cart.jsp");
     }
 
     @Override

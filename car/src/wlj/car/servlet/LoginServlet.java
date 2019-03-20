@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,7 +34,7 @@ public class LoginServlet extends HttpServlet {
         if(validateCode.equals(rightCode)){
             if(user == null){
                 req.setAttribute("message","用户名或密码错误，请重新登录" );
-                req.getRequestDispatcher("login.jsp").forward(req,resp );
+                req.getRequestDispatcher("/login.jsp").forward(req,resp );
             }else{
                 if(userType == 0){
                     if(user.getUserLevelId() == 0){
@@ -56,7 +55,7 @@ public class LoginServlet extends HttpServlet {
                         req.setAttribute("booklist",list );
                         HttpSession session = req.getSession();
                         session.setAttribute("user",user );
-                        req.getRequestDispatcher("index.jsp").forward(req,resp );
+                        req.getRequestDispatcher("/index.jsp").forward(req,resp );
                     }else{
                         HttpSession session = req.getSession();
                         session.setAttribute("message", "用户身份错误");
@@ -67,7 +66,7 @@ public class LoginServlet extends HttpServlet {
             }
         }else {
             req.setAttribute("message","验证码输入错误" );
-            req.getRequestDispatcher("login.jsp").forward(req,resp );
+            req.getRequestDispatcher("/login.jsp").forward(req,resp );
         }
     }
 }

@@ -18,19 +18,19 @@
             当前登录：<strong>${user.userName}</strong>
         </c:when>
     </c:choose>
-    <li style="margin-top: 20px;"><a href="/">图书列表</a></li>
-    <li><a href="/searchBook">搜索图书</a> </li>
+    <li style="margin-top: 20px;"><a href="<%=request.getContextPath()%>">图书列表</a></li>
+    <li><a href="<%=request.getContextPath()%>/searchBook">搜索图书</a> </li>
     <c:choose>
         <c:when test="${!empty user}">
-            <li><a href="/user/user-update.jsp">个人中心</a></li>
-            <li><a href="/user/cartList">购物车</a></li>
+            <li><a href="<%=request.getContextPath()%>/user/user-update.jsp">个人中心</a></li>
+            <li><a href="<%=request.getContextPath()%>/user/cartList">购物车</a></li>
             <%--<li><a href="/clearCart">清空购物车</a></li>--%>
-            <li><a href="/user/totalPrice">结算</a></li>
-            <li><a href="/logout">退出系统</a></li>
+            <li><a href="<%=request.getContextPath()%>/user/totalPrice">结算</a></li>
+            <li><a href="<%=request.getContextPath()%>/logout">退出系统</a></li>
         </c:when>
         <c:otherwise>
-            <li><a href="/login.jsp">登录</a></li>
-            <li><a href="/Register.jsp">注册</a></li>
+            <li><a href="<%=request.getContextPath()%>/login.jsp">登录</a></li>
+            <li><a href="<%=request.getContextPath()%>/Register.jsp">注册</a></li>
         </c:otherwise>
     </c:choose>
 </ul>

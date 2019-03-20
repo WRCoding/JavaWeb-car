@@ -1,5 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<base href="<%=basePath%>">
 <html>
 <head>
     <title>购书系统 - 管理</title>
@@ -74,7 +79,7 @@
         <%@include file="../common/manage-sidebar.jsp" %>
     </div>
     <div class="content-right">
-        <form action="/admin/updateBook" method="post">  <!-- 调用UpdateBookServlet中的doPost -->
+        <form action="admin/updateBook" method="post">  <!-- 调用UpdateBookServlet中的doPost -->
             <input type="hidden" name="bookId" value="${book.bookId}" class="input-css"/>
             书名：<input type="text" name="bookName" value="${book.bookName}" class="input-css"/><br/>
             价格：<input type="text" name="bookSprice" value="${book.bookSprice}" class="input-css"/><br/>

@@ -16,7 +16,7 @@ public class ClearCarServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getSession().removeAttribute("carList");
-        request.getRequestDispatcher("/").forward(request,response );
+        request.getRequestDispatcher("user-cart.jsp").forward(request,response );
     }
 
     @Override

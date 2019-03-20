@@ -7,6 +7,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<base href="<%=basePath%>">
 <html>
 <head>
     <title>购书系统 - 管理</title>
@@ -68,7 +73,6 @@
     </div>
     <div class="content-right">
         ${search}
-        ${message}
         <table>
             <thead>
             <tr>
@@ -80,15 +84,15 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${list}" var="book">
+            <c:forEach items="${booklist}" var="book">
                 <tr>
                     <td>${book.bookName}</td>
                     <td>${book.bookSprice}</td>
                     <td>${book.bookCount}</td>
                     <td>${book.bookAuthor}</td>
                     <td>
-                        <a href="/admin/updateBook?bookId=${book.bookId}">更新</a>  <!-- 调用UpdateBookServlet中的doGet方法 -->
-                        <a href="/admin/deleteBook?bookId=${book.bookId}">删除</a>  <!-- get方法 -->
+                        <a href="admin/updateBook?bookId=${book.bookId}">更新</a>  <!-- 调用UpdateBookServlet中的doGet方法 -->
+                        <a href="admin/deleteBook?bookId=${book.bookId}">删除</a>  <!-- get方法 -->
                     </td>
                 </tr>
             </c:forEach>

@@ -49,7 +49,9 @@ public class AddCarServlet extends HttpServlet {
             }
         }
         request.getSession().setAttribute("carList",carList );
-        response.sendRedirect("/");
+        response.sendRedirect(request.getContextPath());
+
+
     }
 
     @Override

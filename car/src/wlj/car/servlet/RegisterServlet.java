@@ -24,16 +24,16 @@ public class RegisterServlet extends HttpServlet {
         User user = userDao.checkUser(userName);
         if(user != null){
             request.setAttribute("message","用户名已存在" );
-            request.getRequestDispatcher("Register.jsp").forward(request,response );
+            request.getRequestDispatcher("/Register.jsp").forward(request,response );
         }else{
             userDao.register(userName,userPassword,1);
             request.setAttribute("message","注册成功" );
-            request.getRequestDispatcher("Register.jsp").forward(request,response );
+            request.getRequestDispatcher("/Register.jsp").forward(request,response );
         }
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("Register.jsp").forward(request,response );
+        request.getRequestDispatcher("/Register.jsp").forward(request,response );
     }
 }

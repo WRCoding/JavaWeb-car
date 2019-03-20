@@ -7,6 +7,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<base href="<%=basePath%>">
 <html>
 <head>
     <c:choose>
@@ -100,7 +105,7 @@
         </c:otherwise>
     </c:choose>
     <div class="content-right">
-        <form action="/searchBook" method="post">
+        <form action="searchBook" method="post">
             关键字：<input type="text" name="key" required class="input-css"/><br/>
             <button type="submit" class="btn">搜索</button>
         </form>

@@ -1,5 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<base href="<%=basePath%>">
 <html>
 <head>
     <title>购书系统 - 管理</title>
@@ -65,7 +70,7 @@
     </div>
     <div class="content-right">
         <h3>${message}</h3>
-        <form id="file_form" action="/admin/importExcel?type=excToMqsql" enctype="multipart/form-data" method="post">
+        <form id="file_form" action="admin/importExcel?type=excToMqsql" enctype="multipart/form-data" method="post">
             <input type="file" name="file" id="file_input">
             <input type="submit" value="导入数据" class="file">
         </form>

@@ -19,7 +19,7 @@ public class CartListServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/user/user-cart.jsp").forward(req, resp);
+        req.getRequestDispatcher("user-cart.jsp").forward(req, resp);
     }
 
 }

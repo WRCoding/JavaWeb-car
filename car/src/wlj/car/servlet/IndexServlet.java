@@ -24,7 +24,7 @@ public class IndexServlet extends HttpServlet {
         BookDao bookDao = new BookDao();
         list = bookDao.bookList();
         request.setAttribute("booklist",list );
-        request.getRequestDispatcher("index.jsp").forward(request,response );
+       request.getRequestDispatcher("index.jsp").forward(request,response );
     }
 
     @Override

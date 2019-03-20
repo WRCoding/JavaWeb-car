@@ -1,5 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<base href="<%=basePath%>">
 <html>
 <head>
     <title>购书系统 - 管理</title>
@@ -74,7 +79,7 @@
         <%@include file="../common/manage-sidebar.jsp" %>
     </div>
     <div class="content-right">
-        <form action="/admin/addBook" method="post">
+        <form action="admin/addBook" method="post">
             书名：<input type="text" name="bookName" required class="input-css"/><br/>
             价格：<input type="text" name="bookSprice" required class="input-css"/><br/>
             库存：<input type="number" name="bookCount" required min="1" class="input-css"/><br/>

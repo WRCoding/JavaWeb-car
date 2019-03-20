@@ -26,17 +26,17 @@ public class SearchBookServlet extends HttpServlet {
         User user = (User) session.getAttribute("user");
         BookDao bookDao = new BookDao();
         List<Book> list = bookDao.searchBook(key);
-        request.setAttribute("list", list);
+        request.setAttribute("booklist", list);
         request.setAttribute("search","搜索结果" );
         if(user == null || user.getUserLevelId() == 1){
-            request.getRequestDispatcher("/").forward(request,response );
+            request.getRequestDispatcher("/index.jsp").forward(request,response );
         }else{
-            request.getRequestDispatcher("admin/manage-book-index.jsp").forward(request,response );
+            request.getRequestDispatcher("/admin/manage-book-index.jsp").forward(request,response );
         }
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("search.jsp").forward(request,response );
+        request.getRequestDispatcher("/search.jsp").forward(request,response );
     }
 }

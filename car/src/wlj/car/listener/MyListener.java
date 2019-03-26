@@ -77,9 +77,11 @@ public class MyListener implements ServletContextListener,
       /* This method is called when an attribute
          is removed from a session.
       */
-        int count = (int) servletContext.getAttribute("count");
-        servletContext.setAttribute("count",--count );
-        System.out.println("session减："+count);
+        if(sbe.getName().equals("user")){
+            int count = (int) servletContext.getAttribute("count");
+            servletContext.setAttribute("count",--count );
+            System.out.println("session减："+count);
+        }
     }
 
     @Override

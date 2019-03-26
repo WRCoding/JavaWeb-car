@@ -16,15 +16,14 @@ import java.util.List;
  * @author LB
  * @create 2019-03-09 21:09
  */
-@WebServlet("")
+@WebServlet("/index")
 public class IndexServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Book> list = new ArrayList<>();
         BookDao bookDao = new BookDao();
-        list = bookDao.bookList();
-        request.setAttribute("booklist",list );
-       request.getRequestDispatcher("index.jsp").forward(request,response );
+        List<Book> list = bookDao.bookList();
+        request.getSession().setAttribute("booklist",list );
+       response.sendRedirect("/car/main.jsp");
     }
 
     @Override

@@ -67,7 +67,7 @@
     <div class="content-right">
         <c:choose>
             <c:when test="${empty carList}">
-                <h3 class="text-center">购书车空空如也 <a href="" style="color: red">去购物</a></h3>
+                <h3 class="text-center">购书车空空如也 <a href="index" style="color: red">去购物</a></h3>
             </c:when>
             <c:otherwise>
                 <table>
@@ -90,7 +90,7 @@
                             <td>${cart.book.bookAuthor}</td>
                             <td>${cart.number}</td>
                             <td>
-                                <a href="deleteCar?bookId=${cart.book.bookId}">删除</a>
+                                <a href="user/deleteCar?bookId=${cart.book.bookId}">删除</a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -106,7 +106,7 @@
 </div>
 <script type="text/javascript">
     function ClearCar() {
-        window.location.href = "clearCar";
+        window.location.href = "user/clearCar";
     }
 </script>
 </body>

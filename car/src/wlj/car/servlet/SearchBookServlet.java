@@ -26,12 +26,13 @@ public class SearchBookServlet extends HttpServlet {
         User user = (User) session.getAttribute("user");
         BookDao bookDao = new BookDao();
         List<Book> list = bookDao.searchBook(key);
+        System.out.println(key+"-----"+list);
         request.setAttribute("booklist", list);
         request.setAttribute("search","搜索结果" );
         if(user == null || user.getUserLevelId() == 1){
-            request.getRequestDispatcher("/index.jsp").forward(request,response );
+            request.getRequestDispatcher("/main.jsp").forward(request,response );
         }else{
-            request.getRequestDispatcher("/admin/manage-book-index.jsp").forward(request,response );
+            request.getRequestDispatcher("/admin/manage-book-main.jsp").forward(request,response );
         }
     }
 

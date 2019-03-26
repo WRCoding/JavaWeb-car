@@ -60,7 +60,7 @@
         确认：<input type="password" required class="checkUserPassword input-css" placeholder=" 确认密码"/><br/>
         <input type="button" value="注 册" class="btn" onclick="registerFun()"><br/>
         <%--<a href="/">游客访问</a><br/>--%>
-        <a href="login.jsp">去登录</a>
+        <a href="index.jsp">去登录</a>
     </form>
 </div>
 <script>

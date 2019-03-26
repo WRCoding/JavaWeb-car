@@ -34,7 +34,7 @@
 <div class="content">
     <h1>购书系统</h1>
     <p>您没有权限操作，或者没有登录</p>
-    <a href="login.jsp">重新登录</a>
+    <a href="index.jsp">重新登录</a>
 </div>
 </body>
 </html>

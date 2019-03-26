@@ -75,7 +75,7 @@
     <div class="content-right">
         <c:choose>
             <c:when test="${totalPrice == 0.0}">
-                <h3>${message} <a href="" style="color: red">去购物</a></h3>
+                <h3>${message} <a href="index" style="color: red">去购物</a></h3>
             </c:when>
             <c:otherwise>
                 <h3> 您当前总共需要支付 <span style="color: red;">${totalPrice}</span> 元</h3>

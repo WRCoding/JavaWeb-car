@@ -18,7 +18,7 @@
             当前登录：<strong>${user.userName}</strong>
         </c:when>
     </c:choose>
-    <li style="margin-top: 20px;"><a href="<%=request.getContextPath()%>">图书列表</a></li>
+    <li style="margin-top: 20px;"><a href="<%=request.getContextPath()%>/index">图书列表</a></li>
     <li><a href="<%=request.getContextPath()%>/searchBook">搜索图书</a> </li>
     <c:choose>
         <c:when test="${!empty user}">
@@ -29,7 +29,7 @@
             <li><a href="<%=request.getContextPath()%>/logout">退出系统</a></li>
         </c:when>
         <c:otherwise>
-            <li><a href="<%=request.getContextPath()%>/login.jsp">登录</a></li>
+            <li><a href="<%=request.getContextPath()%>/index.jsp">登录</a></li>
             <li><a href="<%=request.getContextPath()%>/Register.jsp">注册</a></li>
         </c:otherwise>
     </c:choose>

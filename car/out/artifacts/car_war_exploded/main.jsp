@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: 林北
+  Date: 2019/3/9
+  Time: 16:47
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
@@ -55,6 +62,7 @@
         ul {
             text-align: left;
         }
+
     </style>
 </head>
 <body>
@@ -62,52 +70,57 @@
     <h1>购书系统 - 购书</h1>
 
     <div class="content-left">
-        <%@include file="../common/user-sidebar.jsp"%>
+        <%@include file="common/user-sidebar.jsp"%>
     </div>
     <div class="content-right">
-        <c:choose>
-            <c:when test="${empty carList}">
-                <h3 class="text-center">购书车空空如也 <a href="index" style="color: red">去购物</a></h3>
-            </c:when>
-            <c:otherwise>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>书名</th>
-                        <th>价格</th>
-                        <th>库存</th>
-                        <th>作者</th>
+        ${search}
+        <table>
+            <thead>
+            <tr>
+                <th>书名</th>
+                <th>价格</th>
+                <th>库存</th>
+                <th>作者</th>
+                <c:choose>
+                    <c:when test="${!empty user}">
                         <th>购买数量</th>
                         <th>操作</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${carList}" var="cart">
-                        <tr>
-                            <td>${cart.book.bookName}</td>
-                            <td>${cart.book.bookSprice}</td>
-                            <td>${cart.book.bookCount}</td>
-                            <td>${cart.book.bookAuthor}</td>
-                            <td>${cart.number}</td>
+                    </c:when>
+                </c:choose>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${booklist}" var="book" varStatus="status">
+                <tr>
+                    <td>${book.bookName}</td>
+                    <td>${book.bookSprice}</td>
+                    <td>${book.bookCount}</td>
+                    <td>${book.bookAuthor}</td>
+                    <c:choose>
+                        <c:when test="${!empty user}">
+                            <td><input type="number" class="bookNumber" value="1" min="1" ></td>
                             <td>
-                                <a href="user/deleteCar?bookId=${cart.book.bookId}">删除</a>
+                                <a href="javascript:;" onclick="addCartFun('${book.bookId}',${status.index})">加入购物车</a>
                             </td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-                <input type="button" style="width: 200px;height: 50px;margin: 60px" value="清空购物车" onclick="ClearCar()">
-            </c:otherwise>
-        </c:choose>
+                        </c:when>
+                    </c:choose>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
     </div>
     <c:if test="${!empty user}">
         <span>当前在线人数为: ${applicationScope.count}</span>
     </c:if>
 </div>
-<script type="text/javascript">
-    function ClearCar() {
-        window.location.href = "user/clearCar";
+
+<script>
+    function addCartFun(bookId,ind) {
+        var number = document.getElementsByClassName("bookNumber")[ind].value;
+        window.location.href = "user/addCar?bookId=" + bookId + "&number=" + number;
     }
 </script>
+
 </body>
 </html>
+

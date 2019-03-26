@@ -2,11 +2,10 @@
   Created by IntelliJ IDEA.
   User: 林北
   Date: 2019/3/9
-  Time: 16:47
+  Time: 15:41
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -14,113 +13,67 @@
 <base href="<%=basePath%>">
 <html>
 <head>
-    <title>购书系统 - 购书</title>
-    <style>
-        h1 {
-            text-align: center;
-            border-bottom: 1px solid black;
-            line-height: 100px;
-        }
+  <title>购书系统</title>
+  <style>
+    h1 {
+      text-align: center;
+      border-bottom: 1px solid black;
+      line-height: 100px;
+    }
 
-        .content {
-            width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center;
-        }
+    .content {
+      width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
 
-        table {
-            border: 1px solid black;
-            margin-left: auto;
-            margin-right: auto;
-            width: 600px;
-            text-align: center;
-            width: 100%;
-        }
+    input {
+      margin: 15px;
+    }
 
-        .content {
-            width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+    .input-css {
+      width: 250px;
+      height: 35px;
+    }
 
-        .content-left {
-            width: 28%;
-            border: 1px solid black;
-            float: left;
-            min-height: 400px;
-        }
-
-        .content-right {
-            width: 68%;
-            border: 1px solid black;
-            float: right;
-            min-height: 370px;
-            padding: 15px;
-        }
-
-        ul {
-            text-align: left;
-        }
-
-    </style>
+    .btn {
+      width: 80px;
+      height: 35px;
+    }
+    a{
+        text-decoration: none;
+    }
+    a:link {color: black}
+    a:visited {color: black}
+    a:hover {color: red}
+    a:active {color: red}
+  </style>
 </head>
 <body>
 <div class="content">
-    <h1>购书系统 - 购书</h1>
-
-    <div class="content-left">
-        <%@include file="common/user-sidebar.jsp"%>
-    </div>
-    <div class="content-right">
-        ${search}
-        <table>
-            <thead>
-            <tr>
-                <th>书名</th>
-                <th>价格</th>
-                <th>库存</th>
-                <th>作者</th>
-                <c:choose>
-                    <c:when test="${!empty user}">
-                        <th>购买数量</th>
-                        <th>操作</th>
-                    </c:when>
-                </c:choose>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${booklist}" var="book" varStatus="status">
-                <tr>
-                    <td>${book.bookName}</td>
-                    <td>${book.bookSprice}</td>
-                    <td>${book.bookCount}</td>
-                    <td>${book.bookAuthor}</td>
-                    <c:choose>
-                        <c:when test="${!empty user}">
-                            <td><input type="number" class="bookNumber" value="1" min="1" ></td>
-                            <td>
-                                <a href="javascript:;" onclick="addCartFun('${book.bookId}',${status.index})">加入购物车</a>
-                            </td>
-                        </c:when>
-                    </c:choose>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
-    </div>
-    <c:if test="${!empty user}">
-        <span>当前在线人数为: ${applicationScope.count}</span>
-    </c:if>
+  <h1>购书系统</h1>
+  <form action="login" method="post">
+    <%--message提示错误信息--%>
+    <span style="color: red;">${message}</span><br/>
+        <input type="hidden" name="action" value="login">
+    账户：<input type="text" name="userName" required class="input-css"/><br/>
+    密码：<input type="password" name="userPassword" required class="input-css"/><br/>
+    <input type="radio" name="userType" value="0" /> 管理员
+    <input type="radio" name="userType" value="1" checked/> 用户<br/>
+     验证码：<input type="text" name="validateCode">
+      <img src="ver/drawImage" id="CodeImage" onclick="changeImge()">
+      <a href="javascript:void(0)" onclick="changeImge()">看不清，换一张</a><br>
+      <input type="submit" value="登 录" class="btn"><br/>
+    <%--<a href="main.jsp">游客访问</a><br/>--%>
+      <br>
+    <a href="register">没有账户？去注册</a>
+  </form>
 </div>
-
-<script>
-    function addCartFun(bookId,ind) {
-        var number = document.getElementsByClassName("bookNumber")[ind].value;
-        window.location.href = "user/addCar?bookId=" + bookId + "&number=" + number;
-    }
+<script type="text/javascript">
+  function changeImge() {
+      document.getElementById("CodeImage").src="ver/drawImage?"+Math.random();
+  }
 </script>
-
 </body>
 </html>
-

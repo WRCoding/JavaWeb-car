@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wlj.car.dao.UserMapper">
+    <select id="login" parameterType="java.util.Map" resultType="user">
+        select *from bookuser where user_name=#{userName} and user_password=#{userPassword}
+    </select>
+
+</mapper>

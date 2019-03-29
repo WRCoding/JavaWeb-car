@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wlj.car.dao.BookMapper">
+    <select id="bookList" resultType="book">
+        select *from book
+    </select>
+    <select id="searchBook" parameterType="string" resultType="book">
+        select *from book where bookName like '%${value}%'
+    </select>
+    <select id="getBook" parameterType="int" resultType="book">
+        select *from book where bookId=#{id}
+    </select>
+    <insert id="addBook" parameterType="book">
+        insert into book (bookName,bookSprice,bookAuthor,bookCount) values(#{bookName},#{bookSprice},#{bookAuthor},#{bookCount})
+    </insert>
+    <delete id="deleteBook" parameterType="int">
+        delete from book where bookId = #{id}
+    </delete>
+    <update id="updateBook" parameterType="book">
+        update book set bookName=#{bookName},bookSprice=#{bookSprice},bookAuthor=#{bookAuthor},bookCount=#{bookCount} where bookId=#{bookId}
+    </update>
+</mapper>

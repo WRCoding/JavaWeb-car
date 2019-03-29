@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--加载属性文件-->
+    <properties resource="mysql.properties"></properties>
+    <!--批量定义别名-->
+    <typeAliases>
+        <package name="wlj.car.bean"></package>
+    </typeAliases>
+    <environments default="default">
+        <!--环境变量-->
+        <environment id="default">
+            <!--事务管理器-->
+            <transactionManager type="jdbc"/>
+            <!--数据源-->
+            <dataSource type="pooled">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--mapping文件路径配置-->
+    <mappers>
+        <mapper resource="mapper/UserMapper.xml"></mapper>
+        <mapper resource="mapper/BookMapper.xml"></mapper>
+    </mappers>
+</configuration>

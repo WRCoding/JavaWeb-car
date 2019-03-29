@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="mcar">
+    <output-path>$PROJECT_DIR$/out/artifacts/mcar</output-path>
+    <root id="archive" name="mcar.war">
+      <element id="artifact" artifact-name="car:war exploded" />
+      <element id="dir-copy" path="$PROJECT_DIR$/web" />
+      <element id="dir-copy" path="$PROJECT_DIR$/src/wlj/resources" />
+      <element id="dir-copy" path="$PROJECT_DIR$/src/wlj/resources/mapper" />
+    </root>
+  </artifact>
+</component>

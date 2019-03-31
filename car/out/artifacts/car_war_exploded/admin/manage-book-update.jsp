@@ -80,6 +80,7 @@
     </div>
     <div class="content-right">
         <form action="admin/updateBook" method="post">  <!-- 调用UpdateBookServlet中的doPost -->
+            <input type="hidden" name="pageNum" value="${requestScope.pageNum}">
             <input type="hidden" name="bookId" value="${book.bookId}" class="input-css"/>
             书名：<input type="text" name="bookName" value="${book.bookName}" class="input-css"/><br/>
             价格：<input type="text" name="bookSprice" value="${book.bookSprice}" class="input-css"/><br/>

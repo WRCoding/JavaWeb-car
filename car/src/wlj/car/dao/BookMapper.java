@@ -3,6 +3,7 @@ package wlj.car.dao;
 import wlj.car.bean.Book;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author LB
@@ -15,5 +16,6 @@ public interface BookMapper {
     int addBook(Book book);
     int deleteBook(int id);
     int updateBook(Book book);
-
+    int BookSize();
+    List<Book> Books(Map<String,Integer> map);
 }

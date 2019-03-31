@@ -4,6 +4,11 @@
     <root id="archive" name="car.war">
       <element id="artifact" artifact-name="car:war exploded" />
       <element id="dir-copy" path="$PROJECT_DIR$/web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="mybatis-3.2.7" />
+        </element>
+      </element>
     </root>
   </artifact>
 </component>

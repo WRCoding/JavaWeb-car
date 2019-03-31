@@ -12,7 +12,7 @@
     a:active {color: black}
 </style>
 <ul>
-    当前登录：${user.userName}
+    当前登录：${user.user_name}
     <li style="margin-top: 20px"><a href="admin/addBook">新增图书</a></li>
     <li><a href="searchBook">搜索图书</a> </li>
     <li><a href="admin/bookList">图书列表</a></li>

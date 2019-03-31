@@ -15,7 +15,7 @@
 <html>
 <head>
     <c:choose>
-        <c:when test="${user.userLevelId == 0}">
+        <c:when test="${user.user_level_id == 0}">
             <title>购书系统 - 管理</title>
         </c:when>
         <c:otherwise>
@@ -89,7 +89,7 @@
 <body>
 <div class="content">
     <c:choose>
-        <c:when test="${user.userLevelId == 0}">
+        <c:when test="${user.user_level_id == 0}">
             <h1>购书系统 - 管理</h1>
 
             <div class="content-left">

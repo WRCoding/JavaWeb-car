@@ -1,8 +1,10 @@
 package wlj.car.servlet;
 
+import org.apache.ibatis.session.SqlSession;
+import wlj.car.DBUtil.GetSqlSession;
 import wlj.car.bean.Book;
 import wlj.car.bean.User;
-import wlj.car.dao.BookDao;
+import wlj.car.dao.BookMapper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,15 +26,15 @@ public class SearchBookServlet extends HttpServlet {
         String key = request.getParameter("key");
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        BookDao bookDao = new BookDao();
-        List<Book> list = bookDao.searchBook(key);
-        System.out.println(key+"-----"+list);
+        SqlSession sqlSession = GetSqlSession.getSqlSession();
+        BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+        List<Book> list = bookMapper.searchBook(key);
         request.setAttribute("booklist", list);
         request.setAttribute("search","搜索结果" );
-        if(user == null || user.getUserLevelId() == 1){
+        if(user == null || user.getUser_level_id() == 1){
             request.getRequestDispatcher("/main.jsp").forward(request,response );
         }else{
-            request.getRequestDispatcher("/admin/manage-book-main.jsp").forward(request,response );
+            request.getRequestDispatcher("/admin/manage-book-index.jsp").forward(request,response );
         }
     }
 

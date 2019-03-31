@@ -22,10 +22,12 @@ public class AdminFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");  //获取当前用户
-        if (user != null && user.getUserLevelId() == 0) {  //检查currentUser判断是否登录且是否为管理员
+        if (user != null && user.getUser_level_id() == 0) {  //检查currentUser判断是否登录且是否为管理员
             filterChain.doFilter(servletRequest, servletResponse);  //管理员已登录，放行
+            return;
         } else {
-            response.sendRedirect("403.jsp");  //未登录或者没有权限进行操作
+            request.getRequestDispatcher("/index.jsp").forward(request,response );  //未登录或者没有权限进行操作
+            return;
         }
     }
 

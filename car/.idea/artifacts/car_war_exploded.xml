@@ -9,6 +9,7 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="commons-fileupload-1.2.1" />
+          <element id="library" level="project" name="mybatis-3.2.7" />
         </element>
       </element>
     </root>

@@ -12,6 +12,12 @@
     <select id="getBook" parameterType="int" resultType="book">
         select *from book where bookId=#{id}
     </select>
+    <select id="BookSize" resultType="int">
+        select count(*) from book
+    </select>
+    <select id="Books" parameterType="java.util.Map" resultType="book">
+        select *from book  limit #{startIndex},#{pageSize}
+    </select>
     <insert id="addBook" parameterType="book">
         insert into book (bookName,bookSprice,bookAuthor,bookCount) values(#{bookName},#{bookSprice},#{bookAuthor},#{bookCount})
     </insert>

@@ -18,7 +18,6 @@ public class LoginOutServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.removeAttribute("user");
-//        session.invalidate();
         response.sendRedirect("index.jsp");
     }
 

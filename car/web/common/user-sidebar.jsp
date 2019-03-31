@@ -15,7 +15,7 @@
 <ul>
     <c:choose>
         <c:when test="${!empty user}">
-            当前登录：<strong>${user.userName}</strong>
+            当前登录：<strong>${user.user_name}</strong>
         </c:when>
     </c:choose>
     <li style="margin-top: 20px;"><a href="<%=request.getContextPath()%>/index">图书列表</a></li>

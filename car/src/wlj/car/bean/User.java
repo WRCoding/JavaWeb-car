@@ -5,40 +5,51 @@ package wlj.car.bean;
  * @create 2019-03-09 16:21
  */
 public class User {
-    private Integer userId;
-    private Integer userLevelId;
-    private String userName;
-    private String userPassword;
+    private Integer user_id;
+    private Integer user_level_id;
+    private String user_name;
+    private String user_password;
 
-    public Integer getUserId() {
-        return userId;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "user_id=" + user_id +
+                ", user_level_id=" + user_level_id +
+                ", user_name='" + user_name + '\'' +
+                ", user_password='" + user_password + '\'' +
+                '}';
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public Integer getUser_id() {
+        return user_id;
     }
 
-    public Integer getUserLevelId() {
-        return userLevelId;
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
     }
 
-    public void setUserLevelId(Integer userLevelId) {
-        this.userLevelId = userLevelId;
+    public Integer getUser_level_id() {
+        return user_level_id;
     }
 
-    public String getUserName() {
-        return userName;
+    public void setUser_level_id(Integer user_level_id) {
+        this.user_level_id = user_level_id;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public String getUser_name() {
+        return user_name;
     }
 
-    public String getUserPassword() {
-        return userPassword;
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
     }
 
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
+    public String getUser_password() {
+        return user_password;
+    }
+
+    public void setUser_password(String user_password) {
+        this.user_password = user_password;
     }
 }

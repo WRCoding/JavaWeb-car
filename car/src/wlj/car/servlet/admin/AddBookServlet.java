@@ -1,7 +1,9 @@
 package wlj.car.servlet.admin;
 
+import org.apache.ibatis.session.SqlSession;
+import wlj.car.DBUtil.GetSqlSession;
 import wlj.car.bean.Book;
-import wlj.car.dao.BookDao;
+import wlj.car.dao.BookMapper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,8 +31,11 @@ public class AddBookServlet extends HttpServlet {
         book.setBookCount(Integer.valueOf(bookCount));
         book.setBookAuthor(bookAuthor);
 
-        BookDao bookDao = new BookDao();
-        bookDao.addBook(book);
+        SqlSession sqlSession = GetSqlSession.getSqlSession();
+        BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+        bookMapper.addBook(book);
+        sqlSession.commit();
+        sqlSession.close();
         request.getRequestDispatcher("/admin/bookList").forward(request,response );
     }
 

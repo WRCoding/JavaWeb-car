@@ -21,10 +21,12 @@ public class UserFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");  //获取当前用户
-        if (user != null && user.getUserLevelId() == 1) {  //检查currentUser判断是否登录且是否为用户
+        if (user != null && user.getUser_level_id() == 1) {  //检查currentUser判断是否登录且是否为用户
             filterChain.doFilter(servletRequest, servletResponse);  //用户已登录，则放行
+            return;
         } else {
-            response.sendRedirect("403.jsp");  //未登录或者没有权限进行操作
+            request.getRequestDispatcher("/index.jsp").forward(request,response );  //未登录或者没有权限进行操作
+            return;
         }
     }
 

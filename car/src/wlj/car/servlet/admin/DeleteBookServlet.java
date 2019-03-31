@@ -1,6 +1,8 @@
 package wlj.car.servlet.admin;
 
-import wlj.car.dao.BookDao;
+import org.apache.ibatis.session.SqlSession;
+import wlj.car.DBUtil.GetSqlSession;
+import wlj.car.dao.BookMapper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,9 +21,11 @@ public class DeleteBookServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String bookId = request.getParameter("bookId");
         if(bookId != null || bookId.equals("")){
-            int id = Integer.parseInt(bookId);
-            BookDao bookDao = new BookDao();
-            bookDao.deleteBook(id);
+            SqlSession sqlSession = GetSqlSession.getSqlSession();
+            BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+            bookMapper.deleteBook(Integer.parseInt(bookId));
+            sqlSession.commit();
+            sqlSession.close();
             request.setAttribute("message","图书删除成功" );
         }
         request.getRequestDispatcher("/admin/bookList").forward(request,response );

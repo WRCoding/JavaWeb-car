@@ -62,7 +62,7 @@ public class ImportExcelServlet extends HttpServlet {
             // 获得列数
             int columns = sheet.getColumns();
 
-            PreparedStatement ps = conn.prepareStatement("INSERT INTO book(book_name,book_sprice,book_author,book_count) VALUES (?,?,?,?)");
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO book(bookName,bookSprice,bookAuthor,bookCount) VALUES (?,?,?,?)");
 
             for (int i = 0; i < rows; i++) {
                 if (i == 0) {  // 第一行是属性，不读取

@@ -89,9 +89,9 @@
         <form action="user/updateUser" method="post">
             <%--message提示错误信息--%>
             <span style="color: red;">${message}</span><br/>
-            <input type="hidden" name="userId" required class="input-css" value="${user.userId}"/>
-            昵称：<input type="text" name="userName" required class="input-css" readonly value="${user.userName}"/><br/>
-            密码：<input type="password" name="userPassword" required class="input-css" value="${user.userPassword}"/><br/>
+            <input type="hidden" name="userId" required class="input-css" value="${user.user_id}"/>
+            昵称：<input type="text" name="userName" required class="input-css" readonly value="${user.user_name}"/><br/>
+            密码：<input type="text" name="userPassword" required class="input-css" value="${user.user_password}"/><br/>
             <input type="submit" value="修改密码" class="btn"><br/>
         </form>
     </div>

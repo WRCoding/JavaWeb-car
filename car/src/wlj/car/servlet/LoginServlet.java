@@ -55,7 +55,6 @@ public class LoginServlet extends HttpServlet {
                         req.getRequestDispatcher("/admin/bookList").forward(req,resp);
                     }else{
                         HttpSession session = req.getSession();
-                        session.setAttribute("message", "用户身份错误");
                         resp.sendRedirect("403.jsp");
                         return;
                     }

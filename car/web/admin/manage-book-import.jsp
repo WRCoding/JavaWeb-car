@@ -8,82 +8,50 @@
 <html>
 <head>
     <title>购书系统 - 管理</title>
-    <style>
-        h1 {
-            text-align: center;
-            border-bottom: 1px solid black;
-            line-height: 100px;
-        }
-
-        .content {
-            width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center;
-        }
-
-        table {
-            border: 1px solid black;
-            margin-left: auto;
-            margin-right: auto;
-            width: 600px;
-            text-align: center;
-            width: 100%;
-        }
-
-        .content {
-            width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .content-left {
-            width: 28%;
-            border: 1px solid black;
-            float: left;
-            min-height: 400px;
-        }
-
-        .content-right {
-            width: 68%;
-            border: 1px solid black;
-            float: right;
-            min-height: 370px;
-            padding: 15px;
-        }
-
-        ul {
-            text-align: left;
-        }
-
-        input {
-            margin: 15px;
-        }
-
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
+    <link href="css/fileinput.min.css" rel="stylesheet">
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/fileinput.min.js"></script>
+    <script src="js/zh.js"></script>
 </head>
 <body>
-<div class="content">
-    <h1>购书系统 - 管理</h1>
-    <div class="content-left">
-        <%@include file="../common/manage-sidebar.jsp" %>
-    </div>
-    <div class="content-right">
-        <h3>${message}</h3>
-        <form id="file_form" action="admin/importExcel?type=excToMqsql" enctype="multipart/form-data" method="post">
-            <input type="file" name="file" id="file_input">
-            <input type="submit" value="导入数据" class="file">
-        </form>
-        <span>
+<%@include file="/common/nav-header.jsp"%>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <%@include file="/common/manage-sidebar.jsp"%>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div class="container">
+                <form id="file_form" action="admin/importExcel?type=excToMqsql" enctype="multipart/form-data" method="post" class="form-horizontal" role="form">
+                    <h3>${message}</h3>
+                   <div class="form-group">
+                       <input type="file" name="file" id="file_input" class="file file_import" data-show-preview="false" >
+                   </div>
+                </form>
+                <span>
             <ul>
                 <li>文件后缀名必须是<span style="color: red;">.xls</span>，不能用其他格式强制转换后缀名</li>
                 <li>字段位置不能随便更改，否则不能导入</li>
             </ul>
         </span>
+            </div>
+        </div>
     </div>
-    <c:if test="${!empty user}">
-        <span>当前在线人数为: ${applicationScope.count}</span>
-    </c:if>
 </div>
+<script>
+    init();
+    function init() {
+        $("#file_input").fileinput({
+            language:'zh'
+        })
+    }
+</script>
 </body>
 </html>

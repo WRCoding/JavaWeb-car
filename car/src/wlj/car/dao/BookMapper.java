@@ -10,7 +10,7 @@ import java.util.Map;
  * @create 2019-03-29 7:53
  */
 public interface BookMapper {
-    List<Book> bookList();
+//    List<Book> bookList();
     List<Book> searchBook(String key);
     Book getBook(int bookId);
     int addBook(Book book);

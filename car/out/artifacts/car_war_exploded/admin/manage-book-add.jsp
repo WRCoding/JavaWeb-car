@@ -8,88 +8,62 @@
 <html>
 <head>
     <title>购书系统 - 管理</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
     <style>
-        h1 {
-            text-align: center;
-            border-bottom: 1px solid black;
-            line-height: 100px;
-        }
-
-        .content {
-            width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center;
-        }
-
-        table {
-            border: 1px solid black;
-            margin-left: auto;
-            margin-right: auto;
-            width: 600px;
-            text-align: center;
-            width: 100%;
-        }
-
-        .content {
-            width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .content-left {
-            width: 28%;
-            border: 1px solid black;
-            float: left;
-            min-height: 400px;
-        }
-
-        .content-right {
-            width: 68%;
-            border: 1px solid black;
-            float: right;
-            min-height: 370px;
+        .form-add{
+            max-width: 450px;
             padding: 15px;
+            margin: 70px auto;
         }
-
-        ul {
-            text-align: left;
-        }
-
-        input {
-            margin: 15px;
-        }
-
-        .input-css {
-            width: 250px;
-            height: 35px;
-        }
-
-        .btn {
-            width: 80px;
-            height: 35px;
-        }
-
     </style>
 </head>
 <body>
-<div class="content">
-    <h1>购书系统 - 管理</h1>
-    <div class="content-left">
-        <%@include file="../common/manage-sidebar.jsp" %>
+<%@include file="/common/nav-header.jsp"%>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <%@include file="/common/manage-sidebar.jsp"%>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div class="container">
+                <form action="admin/addBook" method="post" class="form-add form-horizontal">
+                    <div class="form-group">
+                        <h1 style="margin-left: 220px">新增图书</h1>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">书名</label>
+                        <div class="col-md-8">
+                            <input type="text" name="bookName" required class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">价格</label>
+                        <div class="col-md-8">
+                            <input type="text" name="bookSprice" required class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">库存</label>
+                        <div class="col-md-8">
+                            <input type="text" name="bookCount" required  class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">作者</label>
+                        <div class="col-md-8">
+                            <input type="text" name="bookAuthor" required  class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-md-offset-4">
+                        <button type="submit" class="btn btn-primary btn-block">新增图书</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="content-right">
-        <form action="admin/addBook" method="post">
-            书名：<input type="text" name="bookName" required class="input-css"/><br/>
-            价格：<input type="text" name="bookSprice" required class="input-css"/><br/>
-            库存：<input type="number" name="bookCount" required min="1" class="input-css"/><br/>
-            作者：<input type="text" name="bookAuthor" required class="input-css"/><br/>
-            <button type="submit" class="btn">新增图书</button>
-        </form>
-    </div>
-    <c:if test="${!empty user}">
-        <span>当前在线人数为: ${applicationScope.count}</span>
-    </c:if>
 </div>
+
 </body>
 </html>

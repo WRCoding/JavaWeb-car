@@ -22,97 +22,47 @@
             <title>购书系统 - 购书</title>
         </c:otherwise>
     </c:choose>
-    <style>
-        h1 {
-            text-align: center;
-            border-bottom: 1px solid black;
-            line-height: 100px;
-        }
-
-        .content {
-            width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center;
-        }
-
-        table {
-            border: 1px solid black;
-            margin-left: auto;
-            margin-right: auto;
-            width: 600px;
-            text-align: center;
-            width: 100%;
-        }
-
-        .content {
-            width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .content-left {
-            width: 28%;
-            border: 1px solid black;
-            float: left;
-            min-height: 400px;
-        }
-
-        .content-right {
-            width: 68%;
-            border: 1px solid black;
-            float: right;
-            min-height: 370px;
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
+    <style type="text/css">
+        .form-search{
+            max-width: 330px;
             padding: 15px;
+            margin: 200px auto;
         }
-
-        ul {
-            text-align: left;
-        }
-
-        input {
-            margin: 15px;
-        }
-
-        .input-css {
-            width: 250px;
-            height: 35px;
-        }
-
-        .btn {
-            width: 80px;
-            height: 35px;
-        }
-
     </style>
 </head>
 <body>
-<div class="content">
-    <c:choose>
-        <c:when test="${user.user_level_id == 0}">
-            <h1>购书系统 - 管理</h1>
-
-            <div class="content-left">
-                <%@include file="common/manage-sidebar.jsp"%>
+<%--导航条，引用公共代码--%>
+<%@include file="/common/nav-header.jsp"%>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <c:choose>
+                <c:when test="${user.user_level_id == 0}">
+                        <%@include file="common/manage-sidebar.jsp"%>
+                </c:when>
+                <c:otherwise>
+                        <%@include file="common/user-sidebar.jsp"%>
+                </c:otherwise>
+            </c:choose>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div class="container">
+                <form action="searchBook" method="post" class="form-search form-horizontal">
+                    <div class="form-group row">
+                        <label class="control-label col-md-4">关键字</label>
+                        <div class="col-md-8">
+                            <input type="text" name="key" required class="form-control"/><br/>
+                        </div>
+                    </div>
+                    <div class=" col-md-8 col-md-offset-4">
+                        <button type="submit" class="btn btn-default btn-primary btn-block">搜索</button>
+                    </div>
+                </form>
             </div>
-        </c:when>
-        <c:otherwise>
-            <h1>购书系统 - 购书</h1>
-
-            <div class="content-left">
-                <%@include file="common/user-sidebar.jsp"%>
-            </div>
-        </c:otherwise>
-    </c:choose>
-    <div class="content-right">
-        <form action="searchBook" method="post">
-            关键字：<input type="text" name="key" required class="input-css"/><br/>
-            <button type="submit" class="btn">搜索</button>
-        </form>
-    </div>
-    <c:if test="${!empty user}">
-        <span>当前在线人数为: ${applicationScope.count}</span>
-    </c:if>
+        </div>
+</div>
 </div>
 </body>
 </html>

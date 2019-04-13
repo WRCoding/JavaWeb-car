@@ -14,66 +14,85 @@
 <html>
 <head>
   <title>购书系统</title>
-  <style>
-    h1 {
-      text-align: center;
-      border-bottom: 1px solid black;
-      line-height: 100px;
-    }
-
-    .content {
-      width: 1000px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-    }
-
-    input {
-      margin: 15px;
-    }
-
-    .input-css {
-      width: 250px;
-      height: 35px;
-    }
-
-    .btn {
-      width: 80px;
-      height: 35px;
-    }
-    a{
-        text-decoration: none;
-    }
-    a:link {color: black}
-    a:visited {color: black}
-    a:hover {color: red}
-    a:active {color: red}
-  </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/signin.css" rel="stylesheet">
+    <script type="text/javascript">
+        function changeImge() {
+            var ajax;
+            if (window.XMLHttpRequest){
+                ajax = new XMLHttpRequest();
+            } else if (window.ActiveXObject){
+                ajax = new ActiveXObject("Msxml2.XMLHTTP");
+            }
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4){
+                    if (ajax.status == 200){
+                        document.getElementById("CodeImage").src="ver/drawImage?"+Math.random();
+                    }
+                }
+            }
+            ajax.open("get","ver/drawImage",true);
+            ajax.send(null);
+        }
+    </script>
 </head>
 <body>
-<div class="content">
-  <h1>购书系统</h1>
-  <form action="login" method="post">
-    <%--message提示错误信息--%>
-    <span style="color: red;">${message}</span><br/>
+<div class="container">
+    <form class="form-signin" action="login" method="post">
+        <h1 class="form-signin-heading"style="margin-left: 50px;padding-left: 35px">购书系统</h1>
         <input type="hidden" name="action" value="login">
-    账户：<input type="text" name="userName" required class="input-css"/><br/>
-    密码：<input type="password" name="userPassword" required class="input-css"/><br/>
-    <input type="radio" name="userType" value="0" /> 管理员
-    <input type="radio" name="userType" value="1" checked/> 用户<br/>
-     验证码：<input type="text" name="validateCode">
-      <img src="ver/drawImage" id="CodeImage" onclick="changeImge()">
-      <a href="javascript:void(0)" onclick="changeImge()">看不清，换一张</a><br>
-      <input type="submit" value="登 录" class="btn"><br/>
-    <%--<a href="main.jsp">游客访问</a><br/>--%>
-      <br>
-    <a href="register">没有账户？去注册</a>
-  </form>
-</div>
-<script type="text/javascript">
-  function changeImge() {
-      document.getElementById("CodeImage").src="ver/drawImage?"+Math.random();
-  }
-</script>
+        <%--错误信息提示--%>
+        <span style="color: red;margin-left:47% "><strong>${message}</strong></span><br/>
+        <!-- 用户输入框 -->
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text"  class="form-control" placeholder="用户名" name="userName" required autofocus>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+            </div>
+        </div>
+        <!-- 密码输入框 -->
+        <div class="form-group">
+            <div class="input-group">
+                <input type="password"  class="form-control" placeholder="密码" name="userPassword" required autofocus>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+            </div>
+        </div>
+        <!-- 验证码输入框 -->
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-10">
+                    <div class="input-group">
+                        <input type="text"  class="form-control" placeholder="验证码" name="validateCode" required autofocus>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-picture"></span></span>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <img  src="ver/drawImage" style="margin-top: 7px" onclick="changeImge()" id="CodeImage">
+                </div>
+            </div>
+        </div>
+        <!--类型选择-->
+        <div class="form-group">
+            <div class="radio">
+                <label style="margin-left: 50px">
+                    <input type="radio" name="userType" value="0">管理员
+                </label>
+                <label style="margin-left: 50px">
+                    <input type="radio" name="userType" value="1" checked>用户
+                </label>
+            </div>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+    </form>
+    <div class="col-md-7 col-md-offset-5">
+        <a href="register">没有账户？去注册</a>
+    </div>
+</div> <!-- /container -->
+
 </body>
 </html>

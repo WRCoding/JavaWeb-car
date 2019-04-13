@@ -3,6 +3,7 @@ package wlj.car.servlet;
 import org.apache.ibatis.session.SqlSession;
 import wlj.car.DBUtil.GetSqlSession;
 import wlj.car.bean.Book;
+import wlj.car.bean.Page;
 import wlj.car.bean.User;
 import wlj.car.dao.BookMapper;
 
@@ -29,7 +30,9 @@ public class SearchBookServlet extends HttpServlet {
         SqlSession sqlSession = GetSqlSession.getSqlSession();
         BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
         List<Book> list = bookMapper.searchBook(key);
-        request.setAttribute("booklist", list);
+        Page page = new Page();
+        page.setBooklist(list);
+        request.setAttribute("page", page);
         request.setAttribute("search","搜索结果" );
         if(user == null || user.getUser_level_id() == 1){
             request.getRequestDispatcher("/main.jsp").forward(request,response );

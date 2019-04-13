@@ -15,89 +15,55 @@
 <html>
 <head>
     <title>购书系统 - 购书</title>
-    <style>
-        h1 {
-            text-align: center;
-            border-bottom: 1px solid black;
-            line-height: 100px;
-        }
-
-        .content {
-            width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center;
-        }
-
-        table {
-            border: 1px solid black;
-            margin-left: auto;
-            margin-right: auto;
-            width: 600px;
-            text-align: center;
-            width: 100%;
-        }
-
-        .content {
-            width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .content-left {
-            width: 28%;
-            border: 1px solid black;
-            float: left;
-            min-height: 400px;
-        }
-
-        .content-right {
-            width: 68%;
-            border: 1px solid black;
-            float: right;
-            min-height: 370px;
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
+    <style type="text/css">
+        .form-update{
+            max-width: 500px;
             padding: 15px;
+            margin: 170px auto;
         }
-
-        ul {
-            text-align: left;
-        }
-
-        input {
-            margin: 17px;
-        }
-
-        .input-css {
-            width: 250px;
-            height: 35px;
-        }
-
-        .btn {
-            width: 80px;
-            height: 35px;
-        }
-
     </style>
 </head>
 <body>
-<div class="content">
-    <h1>购书系统 - 购书</h1>
-    <div class="content-left">
-        <%@include file="../common/user-sidebar.jsp"%>
+<%@include file="/common/nav-header.jsp"%>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <c:choose>
+                <c:when test="${user.user_level_id == 0}">
+                    <%@include file="/common/manage-sidebar.jsp"%>
+                </c:when>
+                <c:otherwise>
+                    <%@include file="/common/user-sidebar.jsp"%>
+                </c:otherwise>
+            </c:choose>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div class="container">
+                <form action="user/updateUser" method="post" class="form-horizontal form-update" role="form">
+                    <%--message提示错误信息--%>
+                    <span style="color: red;">${message}</span><br/>
+                        <input type="hidden" name="userId" required class="form-control" value="${user.user_id}"/>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">昵称</label>
+                        <div class="col-md-8">
+                            <input type="text" name="userName" required class=" form-control" readonly value="${user.user_name}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">密码</label>
+                        <div class="col-md-8">
+                            <input type="text" name="userPassword" required class=" form-control" value="${user.user_password}"/>
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-md-offset-4">
+                        <input type="submit" value="修改密码" class="btn btn-block btn-primary btn-default">
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="content-right">
-        <form action="user/updateUser" method="post">
-            <%--message提示错误信息--%>
-            <span style="color: red;">${message}</span><br/>
-            <input type="hidden" name="userId" required class="input-css" value="${user.user_id}"/>
-            昵称：<input type="text" name="userName" required class="input-css" readonly value="${user.user_name}"/><br/>
-            密码：<input type="text" name="userPassword" required class="input-css" value="${user.user_password}"/><br/>
-            <input type="submit" value="修改密码" class="btn"><br/>
-        </form>
-    </div>
-    <c:if test="${!empty user}">
-        <span>当前在线人数为: ${applicationScope.count}</span>
-    </c:if>
 </div>
 </body>
 </html>

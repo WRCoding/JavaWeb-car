@@ -24,6 +24,9 @@ public class Page {
     //相对的尾页
     private int end;
 
+    public Page() {
+    }
+
     public Page(int pageNum, int pageSize, int totalRecord) {
         this.pageNum = pageNum;
         this.pageSize = pageSize;
@@ -47,13 +50,13 @@ public class Page {
         }else{
             this.start = this.pageNum-2;
             this.end = this.pageNum+2;
-            if(this.start<0){
+            if(this.start<=0){
                 this.start = 1;
                 this.end = 5;
             }
-            if(this.end>totalPage){
+            else if(this.end>=totalPage){
                 this.end = totalPage;
-                this.start = this.end-5;
+                this.start = this.end-4;
             }
         }
     }

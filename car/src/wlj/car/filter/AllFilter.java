@@ -26,9 +26,10 @@ public class AllFilter implements Filter {
         request.setCharacterEncoding("utf-8");
         String url = request.getRequestURI();
         String path = url.substring(url.lastIndexOf("/")+1);
+        String staticPath = path.substring(path.lastIndexOf(".")+1);
         String action = request.getParameter("action");
         //如果是登录页面和验证码图片的请求以及登录的请求时进行放行
-        if("index.jsp".equals(path)||"login".equals(action)||"drawImage".equals(path)||"register".equals(path)){
+        if("index.jsp".equals(path)||"login".equals(action)||"drawImage".equals(path)||"register".equals(path)||staticPath.equals("css")||staticPath.equals("js")||staticPath.equals("ico")||"403.jsp".equals(path)){
             request.setCharacterEncoding("utf-8");
             chain.doFilter(request, response);
             response.setContentType("text/html;charset=utf-8");

@@ -12,19 +12,13 @@
     a:hover {color: deepskyblue}
     a:active {color: black}
 </style>
-<ul>
-    <c:choose>
-        <c:when test="${!empty user}">
-            当前登录：<strong>${user.user_name}</strong>
-        </c:when>
-    </c:choose>
+<ul class="nav nav-sidebar faq-tabbable ">
     <li style="margin-top: 20px;"><a href="<%=request.getContextPath()%>/index">图书列表</a></li>
     <li><a href="<%=request.getContextPath()%>/searchBook">搜索图书</a> </li>
     <c:choose>
         <c:when test="${!empty user}">
             <li><a href="<%=request.getContextPath()%>/user/user-update.jsp">个人中心</a></li>
             <li><a href="<%=request.getContextPath()%>/user/cartList">购物车</a></li>
-            <%--<li><a href="/clearCart">清空购物车</a></li>--%>
             <li><a href="<%=request.getContextPath()%>/user/totalPrice">结算</a></li>
             <li><a href="<%=request.getContextPath()%>/logout">退出系统</a></li>
         </c:when>
@@ -34,3 +28,19 @@
         </c:otherwise>
     </c:choose>
 </ul>
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="https://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="C:\Web\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
+<script>
+    $(function () {
+        $(".faq-tabbable").find("li").each(function () {
+            var a = $(this).find("a:first")[0];
+            if ($(a).attr("href") === location.pathname||$(a).attr("href") ==="") {
+                $(this).addClass("active");
+            } else {
+                $(this).removeClass("active");
+            }
+        });
+    })
+</script>
